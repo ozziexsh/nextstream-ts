@@ -47,7 +47,7 @@ export function useRefreshUser() {
       path: '/',
       expires: 7,
     });
-    ctx.setUser(data);
+    ctx.setUser(data.user);
   };
 }
 

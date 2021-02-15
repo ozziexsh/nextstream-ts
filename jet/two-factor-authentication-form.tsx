@@ -5,6 +5,7 @@ import JetButton from './button';
 import JetFormActionSection from './form-action-section';
 import {
   useConfirmPassword,
+  useRefreshUser,
   useTwoFactorRecoveryCodes,
   useUser,
 } from './providers';
@@ -25,6 +26,7 @@ export default function JetTwoFactorAuthenticationForm() {
   } = useConfirmPassword();
   const { addToast } = useToasts();
   const [loading, setLoading] = useState(false);
+  const refreshUser = useRefreshUser();
 
   async function getQrCode() {
     const { ok, data } = await http('user/two-factor-qr-code');
@@ -62,6 +64,7 @@ export default function JetTwoFactorAuthenticationForm() {
     await Promise.all([getQrCode(), getRecoveryCodes()]);
     setShowingRecovery(true);
     setEnabled(true);
+    refreshUser?.();
   }
 
   async function disableTwoFactor() {
@@ -78,7 +81,7 @@ export default function JetTwoFactorAuthenticationForm() {
     setEnabled(false);
     setShowingRecovery(false);
     setQrSvg('');
-    // todo update user cookie?
+    refreshUser?.();
   }
 
   const isLoading = loading || loadingConfirmPassword;

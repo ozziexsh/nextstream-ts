@@ -33,7 +33,7 @@ async function getUser(req: NextApiRequest) {
         path: '/',
       }),
     ],
-    user: ok ? data : null,
+    user: ok ? data.user : null,
   };
 }
 
