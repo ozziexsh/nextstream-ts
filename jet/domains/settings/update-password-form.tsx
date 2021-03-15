@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import http from '../http';
-import JetButton from './button';
-import JetFormSection from './form-section';
-import JetInputError from './input-error';
-import JetInput from './input';
-import JetLabel from './label';
+import http from '../../../http';
+import JetButton from '../../components/button';
+import JetFormSection from '../../components/form-section';
+import JetInputError from '../../components/input-error';
+import JetInput from '../../components/input';
+import JetLabel from '../../components/label';
 import { useToasts } from 'react-toast-notifications';
 import { useForm } from 'react-hook-form';
-import { handleFormErrors } from './providers';
+import { handleFormErrors } from '../../helpers/form';
 
 interface Form {
   current_password: string;

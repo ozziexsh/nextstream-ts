@@ -1,13 +1,18 @@
 import 'tailwindcss/tailwind.css';
 import cookie from 'cookie';
-import { FeatureContext, parseUserCookie, UserContext } from '../jet/providers';
 import http from '../http';
 import moment from 'moment';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { AppProps } from 'next/dist/next-server/lib/router/router';
 import { useState } from 'react';
 import { ToastProvider } from 'react-toast-notifications';
-import JetToast from '../jet/toast';
+import JetToast from '../jet/components/toast';
+import {
+  FeatureContext,
+  parseFeatureCookie,
+  parseUserCookie,
+  UserContext,
+} from '../jet/helpers/auth';
 
 async function getToken(req: NextApiRequest) {
   const { 'XSRF-TOKEN': token } = cookie.parse(req.headers.cookie || '');
@@ -64,7 +69,7 @@ async function handleServer(req: NextApiRequest, res: NextApiResponse) {
 }
 
 function handleClient() {
-  return { props: { user: parseUserCookie() } };
+  return { props: { user: parseUserCookie(), features: parseFeatureCookie() } };
 }
 
 // TODO: get right type?

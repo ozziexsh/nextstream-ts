@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
-import JetButton from './button';
-import JetInput from './input';
-import JetLabel from './label';
-import http from '../http';
-import JetInputError from './input-error';
+import JetButton from '../../components/button';
+import JetInput from '../../components/input';
+import JetLabel from '../../components/label';
+import http from '../../../http';
+import JetInputError from '../../components/input-error';
 import { useForm } from 'react-hook-form';
-import { handleFormErrors } from './providers';
+import { handleFormErrors } from '../../helpers/form';
 
 enum Mode {
   Code,

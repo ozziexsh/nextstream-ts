@@ -1,1 +1,5 @@
 node_modules
+.eslintrc.js
+nextstream.d.ts
+postcss.config.js
+tailwind.config.js

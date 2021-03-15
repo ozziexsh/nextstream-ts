@@ -1,24 +1,23 @@
 import React, { useState } from 'react';
 import { useToasts } from 'react-toast-notifications';
-import http from '../http';
-import JetButton from './button';
-import JetFormActionSection from './form-action-section';
+import http from '../../../http';
+import JetButton from '../../components/button';
+import { useConfirmPassword } from '../../components/confirm-password-modal';
+import JetFormActionSection from '../../components/form-action-section';
+import { useRefreshUser } from '../../helpers/auth';
 import {
-  useConfirmPassword,
-  useRefreshUser,
   useTwoFactorRecoveryCodes,
-  useUser,
-} from './providers';
+  useTwoFactorStatus,
+} from '../../helpers/swr';
 
 export default function JetTwoFactorAuthenticationForm() {
-  const user = useUser();
-  const [enabled, setEnabled] = useState(!!user?.two_factor_secret);
   const [qrSvg, setQrSvg] = useState('');
   const [showingRecovery, setShowingRecovery] = useState(false);
   const {
     data: recoveryCodes,
     revalidate: getRecoveryCodes,
   } = useTwoFactorRecoveryCodes();
+  const { data: status, revalidate: getTwoFactorStatus } = useTwoFactorStatus();
   const {
     withPasswordConfirmation,
     ConfirmPasswordModal,
@@ -63,7 +62,7 @@ export default function JetTwoFactorAuthenticationForm() {
     }
     await Promise.all([getQrCode(), getRecoveryCodes()]);
     setShowingRecovery(true);
-    setEnabled(true);
+    getTwoFactorStatus();
     refreshUser?.();
   }
 
@@ -78,7 +77,7 @@ export default function JetTwoFactorAuthenticationForm() {
         appearance: 'error',
       });
     }
-    setEnabled(false);
+    getTwoFactorStatus();
     setShowingRecovery(false);
     setQrSvg('');
     refreshUser?.();
@@ -94,7 +93,7 @@ export default function JetTwoFactorAuthenticationForm() {
       }
     >
       <h3 className="text-lg font-medium text-gray-900">
-        {enabled
+        {status?.enabled
           ? 'You have enabled two factor authentication.'
           : 'You have not enabled two factor authentication.'}
       </h3>
@@ -107,7 +106,7 @@ export default function JetTwoFactorAuthenticationForm() {
         </p>
       </div>
 
-      {enabled && (
+      {status?.enabled && (
         <>
           {qrSvg && (
             <>
@@ -146,7 +145,7 @@ export default function JetTwoFactorAuthenticationForm() {
       )}
 
       <div className="mt-5">
-        {!enabled ? (
+        {!status?.enabled ? (
           <JetButton
             onClick={withPasswordConfirmation(enableTwoFactor)}
             disabled={isLoading}

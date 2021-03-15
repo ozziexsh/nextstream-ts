@@ -1,10 +1,10 @@
-import JetAppLayout from '../jet/app-layout';
-import JetDeleteUserForm from '../jet/delete-user-form';
-import { redirectIfGuest, useFeatures } from '../jet/providers';
-import JetSectionBorder from '../jet/section-border';
-import JetTwoFactorAuthenticationForm from '../jet/two-factor-authentication-form';
-import JetUpdatePasswordForm from '../jet/update-password-form';
-import JetUpdateProfileInformationForm from '../jet/update-profile-information-form';
+import JetAppLayout from '../jet/layouts/app-layout';
+import JetDeleteUserForm from '../jet/domains/settings/delete-user-form';
+import JetSectionBorder from '../jet/components/section-border';
+import JetTwoFactorAuthenticationForm from '../jet/domains/settings/two-factor-authentication-form';
+import JetUpdatePasswordForm from '../jet/domains/settings/update-password-form';
+import JetUpdateProfileInformationForm from '../jet/domains/settings/update-profile-information-form';
+import { redirectIfGuest, useFeatures } from '../jet/helpers/auth';
 
 export default function Settings() {
   const {

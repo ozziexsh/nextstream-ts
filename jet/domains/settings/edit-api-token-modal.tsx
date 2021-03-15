@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useToasts } from 'react-toast-notifications';
-import http from '../http';
-import JetButton from './button';
-import JetCheckbox from './checkbox';
-import JetDialogModal from './dialog-modal';
-import { ModalProps } from './modal';
+import http from '../../../http';
+import JetButton from '../../components/button';
+import JetCheckbox from '../../components/checkbox';
+import JetDialogModal from '../../components/dialog-modal';
+import { ModalProps } from '../../components/modal';
 
 interface Form {
   permissions: string[];

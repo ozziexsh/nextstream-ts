@@ -1,6 +1,27 @@
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, useState } from 'react';
 import 'react-responsive-modal/styles.css';
 import { Modal as RModal } from 'react-responsive-modal';
+
+export function useModal() {
+  const [visible, setVisible] = useState(false);
+
+  function open() {
+    setVisible(true);
+  }
+
+  function close() {
+    setVisible(false);
+  }
+
+  return {
+    open,
+    close,
+    props: {
+      visible,
+      onClose: close,
+    },
+  };
+}
 
 const maxWidthClass = {
   sm: 'sm:max-w-sm',

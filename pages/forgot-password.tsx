@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import http from '../http';
-import JetAuthenticationCard from '../jet/authentication-card';
-import JetButton from '../jet/button';
-import JetGuestLayout from '../jet/guest-layout';
-import JetInputError from '../jet/input-error';
-import JetInput from '../jet/input';
-import JetLabel from '../jet/label';
-import { handleFormErrors, redirectIfAuthenticated } from '../jet/providers';
+import JetAuthenticationCard from '../jet/components/authentication-card';
+import JetButton from '../jet/components/button';
+import JetGuestLayout from '../jet/layouts/guest-layout';
+import JetInputError from '../jet/components/input-error';
+import JetInput from '../jet/components/input';
+import JetLabel from '../jet/components/label';
 import { useForm } from 'react-hook-form';
+import { redirectIfAuthenticated } from '../jet/helpers/auth';
+import { handleFormErrors } from '../jet/helpers/form';
 
 interface Form {
   email: string;

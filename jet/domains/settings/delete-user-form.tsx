@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import JetButton from './button';
-import JetDialogModal from './dialog-modal';
-import JetFormActionSection from './form-action-section';
-import JetInputError from './input-error';
-import JetInput from './input';
-import http from '../http';
+import JetButton from '../../components/button';
+import JetDialogModal from '../../components/dialog-modal';
+import JetFormActionSection from '../../components/form-action-section';
+import JetInputError from '../../components/input-error';
+import JetInput from '../../components/input';
+import http from '../../../http';
 
 export default function JetDeleteUserForm() {
   const [password, setPassword] = useState('');

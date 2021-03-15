@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { PropsWithChildren } from 'react';
-import JetNavigation from './navigation';
+import JetNavigation from '../components/navigation';
 
 interface Props {
   header?: string;

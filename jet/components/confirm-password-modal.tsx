@@ -1,10 +1,45 @@
-import { PropsWithChildren, useState } from 'react';
-import http from '../http';
+import { PropsWithChildren, useRef, useState } from 'react';
+import http from '../../http';
 import JetButton from './button';
 import JetDialogModal from './dialog-modal';
 import JetInputError from './input-error';
 import JetInput from './input';
 import { ModalProps } from './modal';
+
+export function useConfirmPassword() {
+  const [visible, setVisible] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const userCallback = useRef<() => any>(() => void 0);
+
+  function onSuccess() {
+    setVisible(false);
+    userCallback.current?.();
+  }
+
+  return {
+    withPasswordConfirmation(cb: () => void) {
+      return async function () {
+        setLoading(true);
+        const { response } = await http('user/password-confirmation-status');
+        setLoading(false);
+        if (response.status === 423) {
+          userCallback.current = cb;
+          setVisible(true);
+        } else {
+          cb();
+        }
+      };
+    },
+    ConfirmPasswordModal: () => (
+      <JetConfirmPasswordModal
+        visible={visible}
+        onClose={() => setVisible(false)}
+        onSuccess={onSuccess}
+      />
+    ),
+    loading,
+  };
+}
 
 interface Props extends ModalProps {
   title?: string;

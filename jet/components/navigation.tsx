@@ -5,7 +5,7 @@ import JetDropdown from './dropdown';
 import JetDropdownLink from './dropdown-link';
 import JetNavigationLink from './navigation-link';
 import JetResponsiveNavigationLink from './responsive-navigation-link';
-import { useFeatures, useUser } from './providers';
+import { useFeatures, useUser } from '../providers';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 

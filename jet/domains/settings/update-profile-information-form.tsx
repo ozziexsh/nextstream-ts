@@ -1,19 +1,15 @@
 import { useRef, useState } from 'react';
-import http from '../http';
-import JetButton from './button';
-import JetFormSection from './form-section';
-import JetInputError from './input-error';
-import JetInput from './input';
-import JetLabel from './label';
-import {
-  handleFormErrors,
-  useFeatures,
-  useRefreshUser,
-  useUser,
-} from './providers';
-import { Nullable } from '../types';
+import http from '../../../http';
+import JetButton from '../../components/button';
+import JetFormSection from '../../components/form-section';
+import JetInputError from '../../components/input-error';
+import JetInput from '../../components/input';
+import JetLabel from '../../components/label';
+import { Nullable } from '../../../types';
 import { useToasts } from 'react-toast-notifications';
 import { useForm } from 'react-hook-form';
+import { useFeatures, useRefreshUser, useUser } from '../../helpers/auth';
+import { handleFormErrors } from '../../helpers/form';
 
 interface Form {
   name: string;

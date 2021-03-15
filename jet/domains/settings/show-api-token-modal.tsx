@@ -1,6 +1,6 @@
-import JetButton from './button';
-import JetDialogModal from './dialog-modal';
-import { ModalProps } from './modal';
+import JetButton from '../../components/button';
+import JetDialogModal from '../../components/dialog-modal';
+import { ModalProps } from '../../components/modal';
 
 interface Props extends ModalProps {
   rawToken: string;

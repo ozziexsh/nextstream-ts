@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useToasts } from 'react-toast-notifications';
-import http from '../http';
-import JetButton from './button';
-import JetConfirmationModal from './confirmation-modal';
-import { ModalProps } from './modal';
+import http from '../../../http';
+import JetButton from '../../components/button';
+import JetConfirmationModal from '../../components/confirmation-modal';
+import { ModalProps } from '../../components/modal';
 
 interface Props extends ModalProps {
   tokenId: number;

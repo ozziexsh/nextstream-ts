@@ -11,7 +11,6 @@ export interface User {
   profile_photo_url: Nullable<string>;
   created_at: ApiDate;
   updated_at: ApiDate;
-  two_factor_secret: Nullable<string>;
 }
 
 export interface Features {

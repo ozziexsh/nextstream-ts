@@ -1,5 +1,5 @@
-import JetAppLayout from '../jet/app-layout';
-import { redirectIfGuest } from '../jet/providers';
+import { redirectIfGuest } from '../jet/helpers/auth';
+import JetAppLayout from '../jet/layouts/app-layout';
 
 export default function Home() {
   return (
